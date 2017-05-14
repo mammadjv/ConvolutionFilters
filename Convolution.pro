@@ -11,6 +11,9 @@ LIBS += -lopencv_highgui
 LIBS += -lopencv_imgproc
 LIBS += -lpthread
 
+QMAKE_CXXFLAGS+= -fopenmp
+QMAKE_LFLAGS +=  -fopenmp
+
 SOURCES += main.cpp \
     imageconvertor.cpp \
     viewframe.cpp \
@@ -23,4 +26,3 @@ HEADERS += \
 
 FORMS += \
     viewframe.ui
-

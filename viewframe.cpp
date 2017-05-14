@@ -33,8 +33,12 @@ void ViewFrame::on_files_clicked(){
     QString str = QFileDialog::getOpenFileName(this,tr("Open image"),"/home");
     ui->path->setText(str);
     cv::Mat image = cv::imread(str.toStdString().c_str());
+
+    cv::Mat resizedMat;
+    cv::resize(image,resizedMat,cv::Size(500,200));
     cv::Mat *gray = new cv::Mat();
-    cv::cvtColor(image,*gray,CV_BGR2GRAY);
+    cv::cvtColor(resizedMat,*gray,CV_BGR2GRAY);
+
     this->main_image = gray;
     main_gray = imageConvertor->cv_mat_to_qimage(*this->main_image);
     QLabel *myLabel = new QLabel(ui->mainImg); // sets parent of label to main window
